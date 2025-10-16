@@ -17,8 +17,10 @@
                 <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                     wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
 
-                <flux:navlist.item icon="users" :href="route('employees')" :current="request()->routeIs('employees')"
-                    wire:navigate>{{ __('Employees') }}</flux:navlist.item>
+                {{-- <flux:navlist.item icon="users" :href="route('employees')"
+                    :current="request()->routeIs('employees')" wire:navigate>{{ __('Employees') }}
+                </flux:navlist.item> --}}
+
             </flux:navlist.group>
         </flux:navlist>
 

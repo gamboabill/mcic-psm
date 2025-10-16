@@ -8,6 +8,7 @@ use App\Livewire\Settings\TwoFactor;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
+// This is to redirect the root URL to the login page
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -22,8 +23,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
-
-    Route::get('/employees', Employees::class)->name('employees');
 });
 
 require __DIR__ . '/auth.php';
