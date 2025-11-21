@@ -10,8 +10,6 @@ class MapView extends Component
 {
     public $projects = [];
 
-    public $title = '2';
-
     public function mount()
     {
         // Load all projects with latitude & longitude
@@ -25,7 +23,6 @@ class MapView extends Component
             });
     }
 
-    #[On('project-added')]
     public function refreshProject()
     {
         $this->projects = Project::all();

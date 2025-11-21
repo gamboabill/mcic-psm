@@ -1,5 +1,15 @@
 <div>
-    <div id="map" style="width: 100%; height: 1000px;"></div>
+
+    <a href="{{@route('map.index')}}">
+        <button
+            class="absolute z-50 px-3 py-1 mt-2 ml-2 text-white rounded bg-gray-500 opacity-50 hover:bg-black hover:opacity-100 transition duration-200  ">
+            Dashboard
+        </button>
+    </a>
+
+    <div class="absolute inset-0 z-0" id="map" style="width: 100%; height: 1000px;">
+    </div>
+
 
     <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
     <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
