@@ -15,7 +15,7 @@ class MapView extends Component
     public function mount()
     {
         // Load all projects with latitude & longitude
-        $this->projects = Project::select('name', 'latitude', 'longitude')->get()
+        $this->projects = Project::select('name', 'latitude', 'longitude')->where('status', '0')->get()
             ->map(function ($p) {
                 return [
                     'name' => $p->name,
@@ -23,11 +23,6 @@ class MapView extends Component
                     'longitude' => (float)$p->longitude,
                 ];
             });
-    }
-
-    public function refreshProject()
-    {
-        $this->projects = Project::all();
     }
 
     public function render()
