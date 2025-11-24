@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class AddModal extends Component
 {
-
     public $openAddModal = false;
 
     public $name;
@@ -16,6 +15,17 @@ class AddModal extends Component
     public $latitude;
     public $longitude;
 
+    protected $rules = [
+        'name' => 'required|unique:projects,name',
+    ];
+
+    protected $messages = [
+        'name.unique' => 'The :attribute has already been taken.',
+    ];
+
+    protected $validationAttributes = [
+        'name' => 'id', // This will replace :attribute in error messages
+    ];
 
     #[On('open-add-modal')]
     public function openAddModal()
@@ -26,7 +36,7 @@ class AddModal extends Component
     public function saveProject()
     {
         $data = $this->validate([
-            'name' => 'required|max:255|string',
+            'name' => 'required|max:255|string|unique:projects,name',
             'description' => 'nullable|string|max:1000',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',

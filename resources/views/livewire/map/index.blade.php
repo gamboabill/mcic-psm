@@ -60,7 +60,8 @@
                             <div class="h-5 border-l"></div>
 
                             <div x-data="{ open: false }" class="relative inline-block">
-                                <button @mouseenter="open = true" @mouseleave="open = false"
+                                <button wire:click="openFinishModal({{ $project->id }})" @mouseenter="open = true"
+                                    @mouseleave="open = false"
                                     class="px-2 py-1 rounded text-green-500 bg-transparent hover:bg-green-700 hover:text-white transition duration-200">
                                     <i class="fa fa-circle-check" title="Finish"></i>
                                 </button>
@@ -102,6 +103,8 @@
     </div>
 
     <livewire:map.add-modal />
+
+    <livewire:map.finish-modal />
 
 
 </section>

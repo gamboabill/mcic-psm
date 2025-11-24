@@ -13,29 +13,46 @@
             <x-app-logo />
         </a>
         <flux:navlist variant="outline">
-            <flux:navlist.group :heading="__('Platform')" class="grid">
-                {{-- <flux:navlist.item icon="home" :href="route('dashboard')"
-                    :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                --}}
+            <flux:navlist.group :heading="__('Projects')" class="grid">
 
-                <flux:navlist.item icon="home" :href="route('map.index')" :current="request()->routeIs('map.index')"
-                    wire:navigate>{{ __('Map') }}</flux:navlist.item>
+                <flux:navlist.item icon="document-text" :href="route('map.index')"
+                    :current="request()->routeIs('map.index')" wire:navigate>{{ __('Lists')
+                    }}</flux:navlist.item>
 
-                {{-- <flux:navlist.item icon="users" :href="route('employees')"
-                    :current="request()->routeIs('employees')" wire:navigate>{{ __('Employees') }}
-                </flux:navlist.item> --}}
+                <flux:navlist.item icon="document-text" :href="route('map.finished')"
+                    :current="request()->routeIs('map.finished')" wire:navigate>{{ __('Finished')
+                    }}</flux:navlist.item>
+
+
+            </flux:navlist.group>
+
+            <flux:navlist.group :heading="__('Maps')" class="grid">
+
+                <flux:navlist.item icon="globe-asia-australia" :href="route('map.view')"
+                    :current="request()->routeIs('map.view')">{{ __('Active')
+                    }}</flux:navlist.item>
+
+                <flux:navlist.item icon="globe-asia-australia" :href="route('map.complete')"
+                    :current="request()->routeIs('map.finish')">{{ __('Completed')
+                    }}</flux:navlist.item>
 
             </flux:navlist.group>
         </flux:navlist>
+
 
         <flux:spacer />
 
         <!-- Desktop User Menu -->
         <flux:dropdown class="hidden lg:block" position="bottom" align="start">
-            <flux:profile :initials="auth()->user()->username" icon:trailing="chevrons-up-down" />
+            {{--
+            <flux:profile :initials="auth()->user()->username" icon:trailing="chevrons-up-down" /> --}}
+
+            <flux:profile icon:trailing="chevrons-up-down" />
+
 
             <flux:menu class="w-[220px]">
 
+                <div class="p-2 text-sm bg-gray-100">User: {{auth()->user()->username}}</div>
 
                 <flux:menu.radio.group>
                     <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}
@@ -87,7 +104,5 @@
     @fluxScripts
 
 </body>
-
-
 
 </html>

@@ -18,9 +18,9 @@ Route::get('/', function () {
 //     ->middleware(['auth', 'verified'])
 //     ->name('dashboard');
 
-Route::get('/map', function () {
-    return view('map');
-})->middleware(['auth']);
+Route::get('/dashboard', function () {
+    return redirect('/projects');
+})->middleware(['auth', 'verified']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::redirect('settings', 'settings/profile');
@@ -28,9 +28,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 
-    Route::get('map/',  \App\Livewire\Map\Index::class)->name('map.index');
+    Route::get('projects/',  \App\Livewire\Map\Index::class)->name('map.index');
+    Route::get('finished-project/', \App\Livewire\Map\FinishedProject::class)->name('map.finished');
 });
 
+
 Route::get('map-view/', \App\Livewire\Map\MapView::class)->name('map.view');
+Route::get('map-view-finished/', \App\Livewire\Map\MapViewFinished::class)->name('map.complete');
+
 
 require __DIR__ . '/auth.php';
