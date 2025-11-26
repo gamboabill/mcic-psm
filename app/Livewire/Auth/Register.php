@@ -46,6 +46,6 @@ class Register extends Component
 
         Session::regenerate();
 
-        $this->redirect(route('map', absolute: false), navigate: true);
+        $this->redirect(route('map.index', absolute: false), navigate: true);
     }
 }

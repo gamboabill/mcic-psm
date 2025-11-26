@@ -22,4 +22,11 @@
             <i class="fas fa-check-circle text-green-500"></i> Completed
         </button>
     </a>
+
+    <button
+        class="absolute z-50 top-4 right-4 px-3 py-1 text-white rounded bg-black opacity-30 hover:bg-black hover:opacity-100 transition duration-200"
+        id="toggleLabels">
+        Show All Projects
+    </button>
+
 </div>

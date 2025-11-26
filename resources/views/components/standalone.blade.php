@@ -5,18 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', config('app.name'))</title>
-    @livewireStyles
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    {{--
+    <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script> --}}
+
+    <link rel="stylesheet" href="{{asset('css/maplibre-gl.css')}}">
+
+    <script src="{{asset('js/maplibre-gl.js')}}"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @fluxAppearance
+
 </head>
 
 <body class="bg-white">
+
     <div class="w-full">
+
         {{ $slot }}
+
     </div>
 
-    @livewireScripts
+
+
 </body>
 
 </html>

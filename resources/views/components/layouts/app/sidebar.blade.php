@@ -16,7 +16,7 @@
             <flux:navlist.group :heading="__('Projects')" class="grid">
 
                 <flux:navlist.item icon="document-text" :href="route('map.index')"
-                    :current="request()->routeIs('map.index')" wire:navigate>{{ __('Lists')
+                    :current="request()->routeIs('map.index')" wire:navigate>{{ __('Active')
                     }}</flux:navlist.item>
 
                 <flux:navlist.item icon="document-text" :href="route('map.finished')"
@@ -52,7 +52,7 @@
 
             <flux:menu class="w-[220px]">
 
-                <div class="p-2 text-sm bg-gray-100">User: {{auth()->user()->username}}</div>
+                <div class="p-2 text-sm rounded bg-gray-100 dark:bg-gray-800">User: {{auth()->user()->username}}</div>
 
                 <flux:menu.radio.group>
                     <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}

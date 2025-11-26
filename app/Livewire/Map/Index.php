@@ -11,7 +11,7 @@ class Index extends Component
 {
     use WithPagination;
 
-    public string $title = 'Projects';
+    public string $title = 'Active Projects';
 
     #[On('add-success')]
     public function addFlashMessage()
@@ -25,6 +25,18 @@ class Index extends Component
         session()->flash('success', 'Project successfully finished!');
     }
 
+    #[On('delete-success')]
+    public function deleteFlashMessage()
+    {
+        session()->flash('success', 'Project successfully deleted!');
+    }
+
+    #[On('no-delete-code')]
+    public function noDeleteCodeFlashMessage()
+    {
+        session()->flash('error', 'There is no deletion code available on the system. please register one in the settings page');
+    }
+
     public function openAddModal()
     {
         $this->dispatch('open-add-modal');
@@ -33,6 +45,11 @@ class Index extends Component
     public function openFinishModal($id)
     {
         $this->dispatch('open-finish-modal', id: $id);
+    }
+
+    public function openDeleteModal($id)
+    {
+        $this->dispatch('open-delete-modal', id: $id);
     }
 
     public function render()

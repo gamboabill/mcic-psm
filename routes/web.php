@@ -3,6 +3,7 @@
 
 use App\Livewire\Page\Employees;
 use App\Livewire\Settings\Appearance;
+use App\Livewire\Settings\Codes;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+    Route::get('settings/code', Codes::class)->name('settings.code');
 
     Route::get('projects/',  \App\Livewire\Map\Index::class)->name('map.index');
     Route::get('finished-project/', \App\Livewire\Map\FinishedProject::class)->name('map.finished');

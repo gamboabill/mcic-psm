@@ -29,13 +29,13 @@ class FinishModal extends Component
 
     public function projectFinish()
     {
+        $this->openFinishModal = false;
+
         Project::find($this->projectFinishId)->update([
             'status' => $this->finish,
         ]);
 
         $this->dispatch('finish-success');
-
-        $this->openFinishModal = false;
     }
 
     public function render()

@@ -3,7 +3,6 @@
 namespace App\Livewire\Map;
 
 use App\Models\Project;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class MapView extends Component
