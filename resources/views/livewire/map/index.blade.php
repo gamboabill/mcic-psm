@@ -16,12 +16,9 @@
         <h1 class="text-2xl font-bold">{{$title}}</h1>
     </div>
 
-    <button wire:click="openAddModal"
-        class="px-2 py-2 shadow-md rounded-md text-white bg-blue-500 hover:bg-blue-700 transition duration-200">
-        <i class="fa fa-plus-circle mr-1"></i> Add Project
-    </button>
+    <x-buttons.button action="openAddModal" type="default" label="Add Project" icon="fa fa-plus-circle" />
 
-    <div class="overflow-x-auto rounded-lg shadow-md mt-5">
+    <div class="overflow-x-auto rounded-lg shadow-md mt-5 dark:shadow-black">
         <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 ">
             <thead class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 uppercase text-xs">
                 <tr>
@@ -45,45 +42,12 @@
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->description}}
                     </td>
                     <td class="border-b border-gray-200 dark:border-gray-700 text-center">
-
-                        <div x-data="{ open: false }" class="relative inline-block p-1">
-                            <button wire:click="openEditModal({{$project->id}})" @mouseenter="open = true"
-                                @mouseleave="open = false"
-                                class="px-2 py-1 rounded text-blue-500 border border-blue-500 hover:bg-blue-700 hover:text-white transition duration-200">
-                                <i class="fa fa-edit justify-center" title="Edit"></i>
-                            </button>
-
-                            <div x-show="open" x-transition
-                                class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1">
-                                Edit
-                            </div>
-                        </div>
-
-                        <div x-data="{ open: false }" class="relative inline-block p-1">
-                            <button wire:click="openFinishModal({{ $project->id }})" @mouseenter="open = true"
-                                @mouseleave="open = false"
-                                class="px-2 py-1 rounded text-green-500 border border-green-500 hover:bg-green-700 hover:text-white transition duration-200">
-                                <i class="fa fa-circle-check" title="Finish"></i>
-                            </button>
-                            <div x-show="open" x-transition
-                                class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1">
-                                Finish
-                            </div>
-                        </div>
-
-                        <div x-data="{ open: false }" class="relative inline-block p-1">
-                            <button wire:click="openDeleteModal({{$project->id}})" @mouseenter="open = true"
-                                @mouseleave="open = false"
-                                class="px-2 py-1 rounded text-red-500 border border-red-500 hover:bg-red-700 hover:text-white transition duration-200"
-                                title="Trash">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                            <div x-show="open" x-transition
-                                class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1">
-                                Delete
-                            </div>
-                        </div>
-
+                        <x-buttons.button-icon action="openEditModal" id="{{$project->id}}" icon="fa fa-edit"
+                            label="Edit" />
+                        <x-buttons.button-icon action="openFinishModal" id="{{$project->id}}" icon="fa fa-circle-check"
+                            label="Finish" color="green" />
+                        <x-buttons.button-icon action="openDeleteModal" id="{{$project->id}}" icon="fa fa-trash"
+                            color="red" label="Delete" />
                     </td>
                 </tr>
                 @empty
@@ -104,9 +68,9 @@
         {{ $projects->links() }}
     </div>
 
-    <livewire:map.add-modal />
-
     <livewire:map.edit-modal />
+
+    <livewire:map.add-modal />
 
     <livewire:map.finish-modal />
 

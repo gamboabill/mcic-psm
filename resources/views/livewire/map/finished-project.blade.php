@@ -17,7 +17,7 @@
             <h1 class="text-2xl font-bold">{{$title}}</h1>
         </div>
 
-        <div class="overflow-x-auto rounded-lg shadow-md mt-5">
+        <div class="overflow-x-auto rounded-lg shadow-md dark:shadow-black mt-5">
             <table class="min-w-full text-sm text-left bg-white dark:bg-gray-800 ">
                 <thead class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 uppercase text-xs">
                     <tr>
@@ -40,35 +40,12 @@
                         <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->longitude}}</td>
                         <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->description}}
                         </td>
-                        <td class="border-b border-gray-200 dark:border-gray-700">
-                            <center>
-                                <div wire:click="openEditModal({{$project->id}})" x-data="{ open: false }"
-                                    class="relative inline-block p-1">
-                                    <button @mouseenter="open = true" @mouseleave="open = false"
-                                        class="px-2 py-1 rounded text-blue-500 border border-blue-500 hover:bg-blue-700 hover:text-white transition duration-200">
-                                        <i class="fa fa-edit justify-center" title="Edit"></i>
-                                    </button>
+                        <td class="border-b border-gray-200 dark:border-gray-700 text-center">
+                            <x-buttons.button-icon action="openEditModal" id="{{$project->id}}" icon="fa fa-edit"
+                                label="Edit" />
 
-                                    <div x-show="open" x-transition
-                                        class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1">
-                                        Edit
-                                    </div>
-                                </div>
-
-
-                                <div x-data="{ open: false }" class="relative inline-block p-1">
-                                    <button wire:click="openDeleteModal({{$project->id}})" @mouseenter="open = true"
-                                        @mouseleave="open = false"
-                                        class="px-2 py-1 rounded text-red-500 border border-red-500 hover:bg-red-700 hover:text-white transition duration-200"
-                                        title="Trash">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                    <div x-show="open" x-transition
-                                        class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded px-2 py-1">
-                                        Delete
-                                    </div>
-                                </div>
-                            </center>
+                            <x-buttons.button-icon action="openDeleteModal" id="{{$project->id}}" icon="fa fa-trash"
+                                color="red" label="Delete" />
                         </td>
                     </tr>
                     @empty

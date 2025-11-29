@@ -1,32 +1,30 @@
-<div>
-
-    <a href="{{@route('map.index')}}">
-        <button
-            class="absolute z-50 top-4 left-59 px-3 py-1  text-white rounded bg-black opacity-50 hover:bg-white hover:text-black hover:opacity-90 transition duration-200  ">
-            <i class="fas fa-tachometer-alt"></i> Dashboard
-        </button>
-    </a>
-
+<div class="absolute z-50 py-2 px-2">
 
     <a href="{{@route('map.view')}}">
         <button
-            class="absolute z-50 top-4 left-4 px-3 py-1 rounded {{ request()->routeIs('map.view') ? 'bg-white text-black opacity-70' : 'bg-black opacity-50 text-white hover:bg-white hover:text-black hover:opacity-90' }}  transition duration-200">
+            class=" px-3 py-1 shadow-sm shadow-black rounded {{ request()->routeIs('map.view') ? 'bg-white text-black opacity-70' : 'bg-black opacity-60 text-white hover:bg-white hover:text-black hover:opacity-90' }}  transition duration-200">
             <i class="fas fa-spinner fa-spin text-blue-500"></i> Active
         </button>
     </a>
 
-
     <a href="{{@route('map.complete')}}">
         <button
-            class="absolute z-50 top-4 left-27 px-3 py-1 rounded {{ request()->routeIs('map.complete') ? 'bg-white text-black opacity-70' : 'bg-black opacity-50 text-white hover:bg-white hover:text-black hover:opacity-90' }}  transition duration-200">
+            class=" px-3 py-1 shadow-sm shadow-black rounded {{ request()->routeIs('map.complete') ? 'bg-white text-black opacity-70' : 'bg-black opacity-60 text-white hover:bg-white hover:text-black hover:opacity-90' }}  transition duration-200">
             <i class="fas fa-check-circle text-green-500"></i> Completed
         </button>
     </a>
 
-    <button
-        class="absolute z-50 top-4 right-4 px-3 py-1 text-white rounded bg-black opacity-30 hover:bg-black hover:opacity-100 transition duration-200"
-        id="toggleLabels">
-        Show All Projects
-    </button>
+    <a href="{{@route('map.index')}}">
+        <button class=" px-3 py-1 shadow-sm shadow-black text-white rounded bg-black opacity-60 hover:bg-white
+            hover:text-black hover:opacity-90 transition duration-200 ">
+            <i class=" fas fa-tachometer-alt"></i> Dashboard
+        </button>
+    </a>
 
 </div>
+
+<button
+    class="absolute z-50 px-3 py-1 right-4 mt-2 shadow-sm shadow-black text-white rounded bg-black opacity-60 hover:bg-black hover:opacity-100 transition duration-200 "
+    id="toggleLabels">
+    Show All Projects
+</button>

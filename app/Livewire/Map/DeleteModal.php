@@ -41,6 +41,8 @@ class DeleteModal extends Component
         $this->projectDeleteId = $project->id;
 
         $this->name = $project->name;
+
+        $this->dispatch('auto-focus');
     }
 
     public function deleteProject()
@@ -71,6 +73,10 @@ class DeleteModal extends Component
 
             if (! Hash::check($this->inputCode, $deletionCode)) {
                 $this->addError('inputCode', 'Access Denied!');
+
+                $this->reset();
+
+                $this->openDeleteModal = true;
             } else {
 
                 $project = Project::findOrFail($this->projectDeleteId);

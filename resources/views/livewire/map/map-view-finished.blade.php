@@ -98,9 +98,11 @@
         // BUTTON TO TOGGLE LABELS
         document.getElementById('toggleLabels').addEventListener('click', () => {
             labelsVisible = !labelsVisible;
+            
 
             labelElements.forEach(label => {
                 label.style.display = labelsVisible ? 'block' : 'none';
+                
             });
 
             document.getElementById('toggleLabels').innerText =

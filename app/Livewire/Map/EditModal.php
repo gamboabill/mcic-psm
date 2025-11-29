@@ -40,6 +40,8 @@ class EditModal extends Component
             $this->description = $project->description;
 
             $this->openEditModal = true;
+
+            $this->dispatch('auto-focus');
         }
     }
 

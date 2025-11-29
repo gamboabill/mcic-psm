@@ -13,7 +13,7 @@
 
     @if($count > 0)
 
-    <x-settings.layout :heading="__('Deletion Code')" :subheading=" __('Please register deletion code')">
+    <x-settings.layout :heading="__('Code Registered')" :subheading=" __('Update or remove deletion code')">
         <div class="mt-2">
             <button wire:click=""
                 class="px-3 py-1 rounded-md shadow-md bg-blue-500 text-white hover:bg-blue-700 transition duration-200">
