@@ -37,6 +37,8 @@ class Codes extends Component
         Code::create($validated);
 
         session()->flash('success', 'Code successfully registered');
+
+        $this->reset();
     }
 
     public function render()

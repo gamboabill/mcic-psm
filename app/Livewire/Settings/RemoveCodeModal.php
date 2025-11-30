@@ -56,6 +56,8 @@ class RemoveCodeModal extends Component
             $this->dispatch('remove-success');
 
             $this->openRemoveModal = false;
+
+            $this->reset();
         }
     }
 

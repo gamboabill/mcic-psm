@@ -30,11 +30,11 @@
                     </div>
 
                     <div class="mt-4 flex justify-end space-x-2">
-                        <button wire:click="$set('openRemoveModal', false)"
-                            class="px-4 py-2 rounded-md border border-gray-500 text-gray-500 dark:border-gray-200 dark:text-gray-200 hover:bg-gray-500 hover:text-white transition duration-200">Cancel</button>
 
-                        <button wire:click="removeCode"
-                            class="px-4 py-2 rounded-md border border-red-500 text-red-500 hover:bg-red-600 hover:text-white transition duration-200">Remove</button>
+                        <x-buttons.button type="outline" action="$set('openRemoveModal', false)" label="Cancel" />
+
+
+                        <x-buttons.button type="danger-outline" label="Remove" action="removeCode" />
 
                     </div>
                 </div>

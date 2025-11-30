@@ -20,7 +20,7 @@ class Index extends Component
     }
 
     #[On('edit-success')]
-    public function editFlashMessage($name, $test)
+    public function editFlashMessage($name)
     {
         session()->flash('success', 'Project: ' . $name  . ' successfully updated!');
     }

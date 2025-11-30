@@ -30,6 +30,6 @@ $class = $styles[$type] ?? $styles['primary'];
 @endphp
 
 <button @if($action) wire:click="{{ $action }}" @endif
-    class="px-{{$px}} py-{{$py}} mt-{{$mt}} rounded-md shadow-gray-400 dark:shadow-black shadow-md transition duration-200 {{ $class }}">
+    class="px-{{$px}} py-{{$py}} mt-{{$mt}} rounded-md shadow-gray-400 dark:shadow-black shadow-sm transition duration-200 {{ $class }}">
     <i class="{{ $icon }}"></i> {{ $label }}
 </button>
