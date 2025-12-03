@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Carbon\Carbon;
 
 class EditModal extends Component
 {
@@ -23,6 +24,8 @@ class EditModal extends Component
 
     public $status;
 
+    public $dateStartIfEmpty;
+
     protected $messages = [
         'latitude.numeric' => 'Not an actual latitude.',
         'longitude.numeric' => 'Not an actual longitude.',
@@ -36,6 +39,8 @@ class EditModal extends Component
     {
         $project = Project::findOrFail($id);
 
+        $dateStartIfEmpty = $project->dateStart;
+
         if ($project) {
             $this->projectEditId = $id;
 
@@ -43,11 +48,12 @@ class EditModal extends Component
             $this->latitude = $project->latitude;
             $this->longitude = $project->longitude;
             $this->description = $project->description;
-            $this->dateStart = $project->dateStart;
-            $this->dateEnd = $project->dateEnd;
+
+            $this->dateStart = $project->dateStart ? $project->dateStart->format('Y-m-d') : null;
+            $this->dateEnd = $project->dateEnd ? $project->dateEnd->format('Y-m-d') : null;;
 
             $this->status = $project->status;
-
+            $this->dateStartIfEmpty = $dateStartIfEmpty;
             $this->openEditModal = true;
 
             $this->dispatch('auto-focus');
@@ -63,11 +69,13 @@ class EditModal extends Component
             $this->latitude === $project->latitude &&
             $this->longitude === $project->longitude &&
             $this->description === $project->description &&
-            $this->dateStart === $project->dateStart &&
-            $this->dateEnd === $project->dateEnd
+            $this->dateStart === ($project->dateStart?->format('Y-m-d')) &&
+            $this->dateEnd === ($project->dateEnd?->format('Y-m-d'))
         ) {
 
-            $this->dispatch('edit-no-changes', name: $this->name);
+            $flashMessage = 'No changes were made to Project:' . ' ' . $this->name;
+
+            $this->dispatch('showAlert', type: 'error', message: $flashMessage);
 
             $this->openEditModal = false;
         } else {
@@ -77,18 +85,36 @@ class EditModal extends Component
                 'latitude' => 'required|numeric|between:-90,90',
                 'description' => 'nullable|string|max:1000',
                 'longitude' => 'required|numeric|between:-180,180',
-                'dateStart' => 'nullable|date',
+                'dateStart' => [
+                    'nullable',
+                    'date',
+                    function ($attribute, $value, $fail) {
+                        if (!empty($this->dateEnd)) {
+                            $startDate = Carbon::parse($value);
+                            $endDate = Carbon::parse($this->dateEnd);
+
+                            if ($startDate->greaterThan($endDate)) {
+                                $fail('Start date must be the same as or before than the end date.');
+                            }
+                        }
+                    }
+                ],
                 'dateEnd' => 'nullable|date|after_or_equal:dateStart',
 
             ], $this->messages);
 
             Project::find($this->projectEditId)->update($data);
 
+            $flashMessage = 'Project "' . $this->name . '" has been updated successfully.';
+
+            $this->dispatch('showAlert', type: 'success', message: $flashMessage);
+
             $this->openEditModal = false;
 
-            $this->dispatch('edit-success', name: $this->name);
-
             $this->reset();
+
+            // Refresh the table
+            $this->dispatch('refreshTable');
         }
     }
 

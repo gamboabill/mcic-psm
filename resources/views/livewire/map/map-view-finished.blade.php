@@ -140,12 +140,14 @@
             btn.innerHTML = `<i class="fa fa-sun"></i>`;
             btn.style.backgroundColor = "black";
             btn.style.color = "white";
+            btn.style.width = "38px";
         } else {
             // LIGHT MODE → show moon, button is light
             btn.innerHTML = `<i class="fa fa-moon"></i>`;
             btn.style.backgroundColor = "white";
             btn.style.color = "black";
             btn.style.border = "1px solid black";
+            btn.style.width = "38px";
         }
     }
     </script>

@@ -13,8 +13,6 @@
     {{-- dark mode --}}
     {{-- https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json --}}
 
-
-
     <script>
         // Load saved theme from LocalStorage ('dark' or 'white')
     let isDark = localStorage.getItem("mapTheme") !== "white"; // default = dark
@@ -154,6 +152,7 @@
             btn.innerHTML = `<i class="fa fa-moon"></i>`;
             btn.style.backgroundColor = "white";
             btn.style.color = "black";
+            btn.style.border = "1px solid black";
             btn.style.width = "38px";
         }
     }

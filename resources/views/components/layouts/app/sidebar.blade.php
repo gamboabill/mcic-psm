@@ -99,6 +99,8 @@
         </flux:dropdown>
     </flux:header>
 
+    <livewire:flash-alert />
+
     {{ $slot }}
 
     @fluxScripts

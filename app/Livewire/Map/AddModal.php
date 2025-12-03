@@ -43,11 +43,16 @@ class AddModal extends Component
 
         Project::create($data);
 
-        $this->dispatch('add-success');
+        $flashMessage = 'Project "' . $this->name . '" has been added successfully.';
+
+        $this->dispatch('showAlert', type: 'success', message: $flashMessage);
 
         $this->reset();
 
         $this->openAddModal = false;
+
+        // Refresh the table
+        $this->dispatch('refreshTable');
     }
 
     public function render()

@@ -2,16 +2,6 @@
 
 <section>
 
-    @if(session('success'))
-    <x-alert type="success" message="{{ session('success') }}" timeout="5000">
-    </x-alert>
-    @endif
-
-    @if(session('error'))
-    <x-alert type="error" message="{{session('error')}}" timeout="5000">
-    </x-alert>
-    @endif
-
     <div class="flex justify-between item-center mb-4">
         <h1 class="text-2xl font-bold">{{$title}}</h1>
     </div>
@@ -27,12 +17,14 @@
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Latitude</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Longitude</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Description</th>
+                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Date Start</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600 text-center">Actions
                     </th>
                 </tr>
             </thead>
             <tbody class="text-gray-700 dark:text-gray-200">
                 @forelse($projects as $project)
+
                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-900 transition">
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$projects->firstItem() +
                         $loop->index}}</td>
@@ -41,6 +33,11 @@
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->longitude}}</td>
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->description}}
                     </td>
+
+                    <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                        {{ optional($project->dateStart)?->format('M d Y') ?? '' }}
+                    </td>
+
                     <td class="border-b border-gray-200 dark:border-gray-700 text-center">
                         <x-buttons.button-icon action="openEditModal" id="{{$project->id}}" icon="fa fa-edit"
                             label="Edit" />
@@ -52,7 +49,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                    <td colspan="7" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
                         <center>
                             No departments found.
                         </center>

@@ -53,6 +53,8 @@ class DeleteModal extends Component
 
             $this->dispatch('no-delete-code');
 
+            $this->dispatch('showAlert', type: 'error', message: 'No deletion code set! Please contact the administrator.');
+
             $this->openDeleteModal = false;
 
             $this->reset();
@@ -60,21 +62,8 @@ class DeleteModal extends Component
 
             $deletionCode = $codes->delete_code;
 
-            // $this->validate([
-            //     'inputCode' => [
-            //         'required',
-            //         function ($attribute, $value, $fail) {
-            //             if ($value !== $this->deletionCode) {
-            //                 $fail('error');
-            //             }
-            //         }
-            //     ]
-            // ]);
-
             if (! Hash::check($this->inputCode, $deletionCode)) {
                 $this->addError('inputCode', 'Access Denied!');
-
-                $this->reset();
 
                 $this->openDeleteModal = true;
             } else {
@@ -83,11 +72,13 @@ class DeleteModal extends Component
 
                 $project->delete();
 
-                $this->dispatch('delete-success', name: $project->name);
+                $this->dispatch('showAlert', type: 'success', message: 'Project: ' . $project->name . ' successfully deleted!');
 
                 $this->reset();
 
                 $this->openDeleteModal = false;
+
+                $this->dispatch('refreshTable');
             }
         }
     }

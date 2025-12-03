@@ -8,6 +8,11 @@ class Project extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'dateStart' => 'date',
+        'dateEnd' => 'date',
+    ];
+
     protected $fillable = [
         'name',
         'description',

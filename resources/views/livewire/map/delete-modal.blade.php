@@ -34,7 +34,7 @@
 
                     <x-buttons.button action="$set('openDeleteModal', false)" type="outline" label="Cancel" />
 
-                    <x-buttons.button action="deleteProject" type="danger-outline" label="Update" />
+                    <x-buttons.button action="deleteProject" type="danger-outline" label="Delete" />
 
                 </div>
             </div>

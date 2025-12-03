@@ -6,6 +6,7 @@ use App\Models\Project;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Carbon\Carbon;
 
 class Index extends Component
 {
@@ -13,40 +14,10 @@ class Index extends Component
 
     public string $title = 'Active Projects';
 
-    #[On('add-success')]
-    public function addFlashMessage()
+    #[On('refreshTable')]
+    public function refreshTable()
     {
-        session()->flash('success', 'Project successfully added!');
-    }
-
-    #[On('edit-success')]
-    public function editFlashMessage($name)
-    {
-        session()->flash('success', 'Project: ' . $name  . ' successfully updated!');
-    }
-
-    #[On('edit-no-changes')]
-    public function editNoChangeFlashMessage($name)
-    {
-        session()->flash('error', 'No changes were made to Project:' . ' ' . $name);
-    }
-
-    #[On('finish-success')]
-    public function finishFlashMessage($name)
-    {
-        session()->flash('success', 'Project: ' . $name  . ' successfully finished!');
-    }
-
-    #[On('delete-success')]
-    public function deleteFlashMessage($name)
-    {
-        session()->flash('success', 'Project: ' . $name  . ' successfully deleted!');
-    }
-
-    #[On('no-delete-code')]
-    public function noDeleteCodeFlashMessage()
-    {
-        session()->flash('error', 'There is no deletion code available on the system. please register one in the settings');
+        // Table data will re-render automatically
     }
 
     public function openAddModal()
@@ -71,7 +42,7 @@ class Index extends Component
 
     public function render()
     {
-        $projects = Project::orderBy('id', 'desc')->where('status', '0')->paginate(5);
+        $projects = Project::orderBy('id', 'desc')->where('status', '0')->paginate(20);
 
         return view('livewire.map.index', [
             'projects' => $projects,

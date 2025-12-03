@@ -35,7 +35,12 @@ class FinishModal extends Component
             'status' => $this->finish,
         ]);
 
-        $this->dispatch('finish-success', name: $this->name);
+        $flashMessage = 'Project: ' . $this->name . ' successfully finished!';
+
+        $this->dispatch('showAlert', type: 'success', message: $flashMessage);
+
+        // Refresh the table
+        $this->dispatch('refreshTable');
     }
 
     public function render()
