@@ -41,8 +41,6 @@ class DeleteModal extends Component
         $this->projectDeleteId = $project->id;
 
         $this->name = $project->name;
-
-        $this->dispatch('auto-focus');
     }
 
     public function deleteProject()

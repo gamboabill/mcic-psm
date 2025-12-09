@@ -32,13 +32,15 @@
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->latitude}}</td>
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->longitude}}</td>
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
-                        @if(strlen($project['description']) > 50)
-                        <button wire:click="openModal('{{ addslashes($project['description']) }}')"
-                            class="text-blue-600 underline ml-2">
-                            Read more
+                        @if(empty($project->description))
+
+                        @else
+                        {{ Str::limit($project->description, 50) }}
+                        <button wire:click="viewDescription({{ $project->id }})"
+                            class="text-blue-500 hover:text-blue-700 cursor-pointer">
+                            🔍
                         </button>
                         @endif
-
                     </td>
 
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
@@ -95,10 +97,11 @@
         </table>
     </div>
 
-
     <div class="mt-4">
         {{ $projects->links() }}
     </div>
+
+    <livewire:map.view-description />
 
     <livewire:map.edit-modal />
 
@@ -107,6 +110,5 @@
     <livewire:map.finish-modal />
 
     <livewire:map.delete-modal />
-
 
 </section>

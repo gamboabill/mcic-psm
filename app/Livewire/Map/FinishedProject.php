@@ -31,6 +31,11 @@ class FinishedProject extends Component
         $this->dispatch('open-edit-modal', id: $id);
     }
 
+    public function viewDescription($id)
+    {
+        $this->dispatch('open-description-modal', id: $id);
+    }
+
     public function render()
     {
         $projects = Project::orderBy('id', 'desc')->where('status', '1')->paginate(5);

@@ -14,6 +14,8 @@
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Latitude</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Longitude</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Description</th>
+                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Start Date</th>
+                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Finish Date</th>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600 text-center ">Actions
                     </th>
                 </tr>
@@ -26,12 +28,27 @@
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->name}}</td>
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->latitude}}</td>
                     <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->longitude}}</td>
-                    <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">{{$project->description}}
+                    <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                        @if(empty($project->description))
+
+                        @else
+                        {{ Str::limit($project->description, 50) }}
+                        <button wire:click="viewDescription({{ $project->id }})"
+                            class="text-blue-500 hover:text-blue-700 cursor-pointer">
+                            🔍
+                        </button>
+                        @endif
+                    </td>
+                    <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                        {{ optional($project->dateStart)?->format('M d Y') ?? '' }}
+                    </td>
+                    <td class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
+                        {{ optional($project->dateEnd)?->format('M d Y') ?? '' }}
                     </td>
                     <td class="border-b border-gray-200 dark:border-gray-700 text-center">
 
-                        <x-buttons.button-icon action="openEditModal" id="{{$project->id}}" icon="fa fa-edit"
-                            label="Edit" />
+                        <x-buttons.button-icon type="default" action="openEditModal" id="{{$project->id}}"
+                            icon="fa fa-edit" label="Edit" />
 
                         <!-- dropdown: prevent Livewire from re-rendering this block and hide until Alpine ready -->
 
@@ -77,8 +94,8 @@
         {{ $projects->links() }}
     </div>
 
+    <livewire:map.view-description />
     <livewire:map.edit-modal />
-
     <livewire:map.delete-modal />
 
 </div>
