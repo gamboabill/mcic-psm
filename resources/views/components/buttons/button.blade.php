@@ -16,7 +16,8 @@
 
 @php
 $styles = [
-'default' => 'rounded-md bg-gray-500 dark:bg-gray-800 text-white hover:bg-gray-700 dark:hover:bg-gray-900',
+'default' => 'border-transparent rounded-md bg-gray-500 dark:bg-gray-800 text-white hover:bg-gray-700
+dark:hover:bg-gray-900',
 'primary' => 'rounded-md bg-blue-500 text-white hover:bg-blue-700',
 'danger' => 'rounded-md bg-red-500 text-white hover:bg-red-700',
 'success' => 'rounded-md bg-green-500 text-white hover:bg-green-700',
@@ -26,7 +27,7 @@ $styles = [
 dark:text-gray-600
 dark:hover:bg-gray-900 dark:hover:border-gray-900 dark:text-white',
 
-'menu' => 'rounded-xs border border-gray-300 text-gray-600 hover:border-gray-600 hover:bg-gray-600 dark:bg-gray-800
+'menu' => 'rounded-sm border border-gray-400 text-gray-600 hover:border-gray-600 hover:bg-gray-600 dark:bg-gray-800
 dark:border-gray-600
 dark:text-gray-500 dark:hover:bg-gray-600 dark:hover:border-gray-500 hover:text-white',
 
@@ -44,8 +45,9 @@ $class = $styles[$type] ?? $styles['primary'];
 @if($popup) <div x-data="{ tooltip: false }" class="relative inline-block"> @endif
 
     <button @if($action) wire:click="{{ $action }} @if($id)({{$id}})@endif" @endif {{$attributes->merge(['class'=>
-        "p-{$p} px-{$px} m-{$m} py-{$py} mt-{$mt} ml-{$ml} dark:shadow-black shadow-sm
-        transition duration-200 cursor-pointer {$class}"])}} @mouseenter="tooltip = true" @mouseleave="tooltip = false">
+        "p-{$p} px-{$px} m-{$m} py-{$py} mt-{$mt} ml-{$ml} dark:shadow-black shadow-md
+        transition duration-400 cursor-pointer border {$class}"])}} @mouseenter="tooltip = true" @mouseleave="tooltip =
+        false">
         <i class="{{ $icon }}"></i> @if($label === 'More') @else {{$label}} @endif
     </button>
 

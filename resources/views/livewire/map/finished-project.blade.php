@@ -47,8 +47,8 @@
                     </td>
                     <td class="border-b border-gray-200 dark:border-gray-700 text-center">
 
-                        <x-buttons.button-icon type="default" action="openEditModal" id="{{$project->id}}"
-                            icon="fa fa-edit" label="Edit" />
+                        <x-buttons.button type="menu" action="openEditModal" id="{{$project->id}}" icon="fa fa-edit"
+                            px="2" popup="Edit" />
 
                         <!-- dropdown: prevent Livewire from re-rendering this block and hide until Alpine ready -->
 
@@ -60,7 +60,7 @@
                                 const r = $el.getBoundingClientRect();
                                 pos.top = r.bottom + window.scrollY + 6;
                                 pos.left = r.left + window.scrollX - 145;
-                                open = !open;" type="menu" px="" py="1" p="1" icon="fa fa-ellipsis-v" label="More" />
+                                open = !open;" type="menu" px="" py="1" p="1" icon="fa fa-ellipsis-v" popup="More" />
 
                             <!-- DROPDOWN TELEPORTED OUTSIDE TABLE -->
                             <template x-teleport="body">
