@@ -23,12 +23,12 @@
             <thead class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100 uppercase text-xs">
                 <tr>
                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">No</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Project ID</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Latitude</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Longitude</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Description</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Date Start</th>
-                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600 text-center">Actions
+                    <th class="w-1/6 px-6 py-3 border-b border-gray-300 dark:border-gray-600">Project ID</th>
+                    <th class="w-1/6 px-6 py-3 border-b border-gray-300 dark:border-gray-600">Latitude</th>
+                    <th class="w-1/6 px-6 py-3 border-b border-gray-300 dark:border-gray-600">Longitude</th>
+                    <th class="w-1/3 px-6 py-3 border-b border-gray-300 dark:border-gray-600">Description</th>
+                    <th class="w-1/6 px-6 py-3 border-b border-gray-300 dark:border-gray-600">Date Start</th>
+                    <th class="w-1/6 px-6 py-3 border-b border-gray-300 dark:border-gray-600 text-center">Actions
                     </th>
                 </tr>
             </thead>
@@ -89,9 +89,9 @@
                             </template>
 
                         </div>
-
                     </td>
                 </tr>
+
                 @empty
                 <tr>
                     <td colspan="7" class="px-6 py-3 border-b border-gray-200 dark:border-gray-700">
@@ -101,6 +101,7 @@
                     </td>
                 </tr>
                 @endforelse
+
             </tbody>
         </table>
     </div>

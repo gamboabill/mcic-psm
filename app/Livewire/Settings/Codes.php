@@ -15,6 +15,18 @@ class Codes extends Component
     public $openRemoveCode = false;
     public $removeCodeId;
 
+    public $messages = [
+        'code.confirmed' => 'Deletion code mismatch. Please ensure both fields contain the same code.',
+        'code_confirmation.required' => 'Please confirm your deletion code.'
+    ];
+
+    public function mount()
+    {
+        if (auth()->user()->username !== 'admin') {
+            $this->dispatch('showAlert', type: 'error', message: 'Forbidden page. Please contact Administrator');
+        }
+    }
+
     #[On('refreshPage')]
     public function refreshPage()
     {
@@ -30,6 +42,7 @@ class Codes extends Component
     {
         $validated =  $this->validate([
             'code' => 'required|max:255|confirmed',
+            'code_confirmation' => 'required',
         ]);
 
         $validated['delete_code'] = Hash::make($validated['code']);

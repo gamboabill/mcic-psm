@@ -63,7 +63,7 @@ class Index extends Component
                     ->orWhereRaw("DATE_FORMAT(dateStart, '%b %d %Y') LIKE ?", ['%' . $this->search . '%']);
             })
             ->orderBy('dateStart', 'ASC')
-            ->paginate(10);
+            ->paginate(20);
 
         return view('livewire.map.index', [
             'projects' => $projects,
