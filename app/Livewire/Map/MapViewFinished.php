@@ -12,18 +12,32 @@ class MapViewFinished extends Component
 
     public string $title = 'Map View';
 
+    public array $projectsGeoJSON = [];
+
     public function mount()
     {
-        // Load all projects with latitude & longitude
-        $this->projects = Project::select('name', 'latitude', 'longitude', 'description')->where('status', '1')->get()
-            ->map(function ($p) {
+        $projects = Project::select('id', 'name', 'description', 'latitude', 'longitude')->where('status', 1)->get();
+
+        $this->projectsGeoJSON = [
+            'type' => 'FeatureCollection',
+            'features' => $projects->map(function ($p) {
                 return [
-                    'name' => $p->name,
-                    'latitude' => (float)$p->latitude,
-                    'longitude' => (float)$p->longitude,
-                    'description' => $p->description,
+                    'type' => 'Feature',
+                    'geometry' => [
+                        'type' => 'Point',
+                        'coordinates' => [
+                            (float) $p->longitude,
+                            (float) $p->latitude,
+                        ],
+                    ],
+                    'properties' => [
+                        'id' => $p->id,
+                        'name' => $p->name,
+                        'description' => $p->description,
+                    ],
                 ];
-            });
+            })->values()->toArray(),
+        ];
     }
 
     public function render()

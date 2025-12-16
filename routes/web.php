@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\MapDataController;
 use App\Livewire\Page\Employees;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Codes;
@@ -37,6 +37,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('map-view/', \App\Livewire\Map\MapView::class)->name('map.view');
 Route::get('map-view-finished/', \App\Livewire\Map\MapViewFinished::class)->name('map.complete');
-
+Route::get('/map/projects.geojson', [MapDataController::class, 'projects']);
 
 require __DIR__ . '/auth.php';

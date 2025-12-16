@@ -13,6 +13,6 @@ class randomProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::factory(2000)->create();
+        Project::factory(1000)->create();
     }
 }

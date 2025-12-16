@@ -17,10 +17,10 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->words('2', true),
+            'name' => $this->faker->words('2', true),
             'description' => $this->faker->paragraphs('3', true),
-            'latitude' => $this->faker->randomFloat(6, 5.0, 19.0),    // 6 decimal places
-            'longitude' => $this->faker->randomFloat(6, 115.0, 126.0),
+            'latitude' => $this->faker->randomFloat(6, -90.0, 90.0),    // 6 decimal places
+            'longitude' => $this->faker->randomFloat(6, -180.0, 180.0),
             'dateStart' => $this->faker->date(),
             'status' => $this->faker->numberBetween(0, 1),
         ];

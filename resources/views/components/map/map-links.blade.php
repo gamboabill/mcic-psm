@@ -24,7 +24,7 @@
 </div>
 
 <button
-    class="absolute z-50 px-3 py-1 right-4 mt-2 shadow-sm shadow-black text-white rounded bg-black opacity-60 hover:bg-black hover:opacity-100 transition duration-200 "
+    class="absolute z-50 w-37 px-3 py-1 right-4 mt-2 shadow-sm shadow-black text-white rounded bg-black opacity-60 hover:bg-black hover:opacity-100 transition duration-200 "
     id="toggleLabels">
     Show All Projects
 </button>

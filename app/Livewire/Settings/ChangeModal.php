@@ -28,6 +28,7 @@ class ChangeModal extends Component
 
     protected $messages = [
         'new.required' => 'please enter a new deletion code',
+        'new.confirmed' => 'The new code and confirmation code do not match.'
     ];
 
 
@@ -44,21 +45,37 @@ class ChangeModal extends Component
 
     public function changeCode()
     {
-        if (! Hash::check($this->confirmOldCode, $this->oldCode)) {
-            $this->addError('confirmOldCode', 'The existing code registered does not match!');
-            $this->openChangeModal = true;
-            return;
-        }
-
+        // 1. Validate inputs first
         $data = $this->validate([
+            'confirmOldCode' => ['required'],
             'new' => ['required', 'max:255', 'confirmed'],
             'new_confirmation' => ['required'],
         ]);
 
+        // 2. Check current code
+        if (! Hash::check($this->confirmOldCode, $this->oldCode)) {
+            $this->addError('confirmOldCode', 'The current code you entered is incorrect.');
+            $this->openChangeModal = true;
+            return;
+        }
 
-        $data['delete_code'] = Hash::make($data['new']);
+        // 3. Prevent reuse of old code
+        if (Hash::check($this->new, $this->oldCode)) {
+            $this->addError('new', 'Your new code must be different from your current code..');
+            return;
+        }
 
-        Code::find($this->codeId)->update($data);
+        // 4. Update securely
+        Code::find($this->codeId)->update([
+            'delete_code' => Hash::make($data['new']),
+        ]);
+
+        // 5. Notify user
+        $this->dispatch('showAlert', type: 'success', message: 'Deletion code successfully updated');
+
+        // 6. Reset UI
+        $this->openChangeModal = false;
+        $this->reset();
     }
 
 

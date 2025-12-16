@@ -15,27 +15,24 @@
             class="bg-white p-6 rounded-lg w-full max-w-lg dark:bg-gray-800">
 
             <h2 class="text-lg font-bold mb-3">Confirm Deletion</h2>
-            <p>Are you sure you want to delete Project: </p>
+            <p>Update deletion code: </p>
             <br>
-
-
 
             <div class="space-y-3">
 
-                <x-inputs.input type="password" label="Please confirm deletion code" name="confirmOldCode"
-                    autofocus="focusInput" placeholder="Enter deletion code" />
+                <x-inputs.input type="password" label="Current Code" name="confirmOldCode" autofocus="focusInput"
+                    placeholder="Enter current code" />
 
-                <x-inputs.input type="password" label="Please confirm deletion code" name="new" autofocus="focusInput"
-                    placeholder="Enter deletion code" />
+                <x-inputs.input type="password" label="New code" name="new" placeholder="Enter new code" />
 
-                <x-inputs.input type="password" label="Please confirm deletion code" name="new_confirmation"
-                    autofocus="focusInput" placeholder="Enter deletion code" />
+                <x-inputs.input type="password" label="Confirm new code" name="new_confirmation"
+                    placeholder="Confirm new code" />
 
                 <div class="mt-4 flex justify-end space-x-2">
 
                     <x-buttons.button action="$set('openChangeModal', false)" type="outline" label="Cancel" />
 
-                    <x-buttons.button action="changeCode" type="danger-outline" label="Delete" />
+                    <x-buttons.button action="changeCode" type="primary-outline" label="Update" />
 
                 </div>
 
