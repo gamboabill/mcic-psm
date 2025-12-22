@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('projects/',  \App\Livewire\Map\Index::class)->name('map.index');
     Route::get('finished-projects/', \App\Livewire\Map\FinishedProject::class)->name('map.finished');
-    Route::get('projects/files/{id}', \App\Livewire\Map\Files::class)->name('project.files');
+    Route::get('files/{id}', \App\Livewire\Map\ProjectFiles::class)->name('project.files');
 });
 
 

@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('project_files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-            $table->string('file_name');
+            $table->string('original_name');
             $table->string('file_path');
-            $table->bigInteger('file_size')->nullable(); // in bytes
-            $table->string('file_type', 100)->nullable(); // MIME type
-            $table->string('file_extension', 10)->nullable();
-            $table->text('description')->nullable();
-            $table->string('file_category', 50)->nullable(); // document, image, spreadsheet, etc.
+            $table->string('mime_type', 100);
+
+            $table->unsignedBigInteger('file_size'); // bytes
+
+            $table->string('category', 50)->nullable(); // user-defined
+
             $table->timestamps();
         });
     }

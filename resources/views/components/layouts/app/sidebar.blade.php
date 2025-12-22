@@ -109,6 +109,7 @@
     <livewire:map.add-modal />
     <livewire:map.finish-modal />
     <livewire:map.delete-modal />
+    <livewire:map.file-upload-modal />
     <livewire:settings.change-modal />
 
 </body>

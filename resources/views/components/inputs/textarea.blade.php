@@ -5,7 +5,7 @@
 ])
 
 <div class="w-full">
-    <label for="description" class="block text-sm font-medium text-gray-300 dark:text-gray-300 mb-1">
+    <label for="description" class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
         {{$label}}
     </label>
     <textarea type="text" @if($name) wire:model="{{$name}}" @endif rows="5"

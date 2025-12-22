@@ -9,7 +9,7 @@
 
 <div class="w-full mb-{{$mb}}">
     @if($label)
-    <label for="{{$name}}" class="block text-sm font-medium text-gray-300 dark:text-gray-300 mb-1">
+    <label for="{{$name}}" class="block text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">
         {{$label}}
     </label>
     @endif

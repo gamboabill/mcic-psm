@@ -11,12 +11,16 @@ class ProjectFile extends Model
 
     protected $fillable = [
         'project_id',
-        'file_name',
+        'original_name',
         'file_path',
+        'mime_type',
         'file_size',
-        'file_type',
-        'file_extension',
+        'category',
         'description',
-        'file_category',
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

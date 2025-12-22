@@ -4,9 +4,11 @@ namespace App\Livewire\Map;
 
 use App\Models\Code;
 use App\Models\Project;
+use App\Models\ProjectFile;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteModal extends Component
 {
@@ -66,7 +68,20 @@ class DeleteModal extends Component
                 $this->openDeleteModal = true;
             } else {
 
-                $project = Project::findOrFail($this->projectDeleteId);
+                $project = Project::with('files')->findOrFail($this->projectDeleteId);
+
+                foreach ($project->files as $file) {
+                    if (Storage::disk('public')->exists($file->file_path)) {
+                        Storage::disk('public')->delete($file->file_path);
+                    }
+                }
+
+                $projectFolder = 'project_files/' . $this->name;
+
+                if (Storage::disk('public')->exists($projectFolder)) {
+                    Storage::disk('public')->deleteDirectory($projectFolder);
+                }
+
 
                 $project->delete();
 

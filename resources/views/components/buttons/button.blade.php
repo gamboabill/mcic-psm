@@ -16,9 +16,10 @@
 
 @php
 $styles = [
-'default' => 'border-transparent rounded-md bg-gray-500 dark:bg-gray-800 text-white hover:bg-gray-700
+'default' => 'border-gray-400 dark:border-transparent rounded-md bg-transparent dark:bg-gray-800 text-gray-600
+hover:bg-gray-300
 dark:hover:bg-gray-900',
-'primary' => 'rounded-md bg-blue-500 text-white hover:bg-blue-700',
+'primary' => 'rounded-md bg-blue-500 text-white hover:bg-blue-700 border-transparent',
 'danger' => 'rounded-md bg-red-500 text-white hover:bg-red-700',
 'success' => 'rounded-md bg-green-500 text-white hover:bg-green-700',
 'empty' => 'border-transparent bg-transparent shadow-transparent',

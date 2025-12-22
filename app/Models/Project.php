@@ -24,4 +24,9 @@ class Project extends Model
         'dateStart',
         'dateEnd',
     ];
+
+    public function files()
+    {
+        return $this->hasMany(ProjectFile::class);
+    }
 }

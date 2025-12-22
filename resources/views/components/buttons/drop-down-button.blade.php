@@ -14,7 +14,8 @@ $styles = [
 hover:bg-green-700',
 'danger' => 'hover:bg-gray-100 border border-transparent text-red-600 dark:text-red-300 hover:text-white
 hover:bg-red-700',
-'default' => 'hover:bg-gray-500 hover:text-white text-black dark:text-gray-300 border border-transparent',
+'default' => 'hover:bg-gray-500 hover:text-white text-black dark:text-gray-300 border border-transparent
+dark:hover:bg-gray-600',
 
 ];
 
