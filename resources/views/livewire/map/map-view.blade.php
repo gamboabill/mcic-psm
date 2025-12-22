@@ -35,10 +35,10 @@
                 type: 'circle',
                 source: 'projects',
                 paint: {
-                    'circle-radius': 3, // keep small for performance
-                    'circle-color': '#E10600',
+                    'circle-radius': 2.5, // keep small for performance
+                    'circle-color': '#EB212E',
                     'circle-stroke-width': 0.9,
-                    'circle-stroke-color': isDark ? '#fff' : '#000'
+                    'circle-stroke-color': isDark ? '#fff' : 'orange'
                 }
             });
 

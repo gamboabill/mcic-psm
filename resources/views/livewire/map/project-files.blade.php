@@ -62,10 +62,21 @@
                         </p>
                     </div>
 
+                    @if($file->mime_type == 'video/mp4')
+
                     <a href="{{ Storage::url($file->file_path) }}" target="_blank"
-                        class=" text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                        class="text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                        🟢
+                    </a>
+
+                    @endif
+
+                    <a href="{{ Storage::url($file->file_path) }}" target="_blank"
+                        download="{{ basename($file->file_path) }}"
+                        class="ml-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
                         ⬇️
                     </a>
+
                     <a href="{{ Storage::url($file->file_path) }}" target="_blank" class="ml-2">
                         ⛔
                     </a>

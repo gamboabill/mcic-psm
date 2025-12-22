@@ -20,7 +20,7 @@ class FileUploadModal extends Component
     public $category;
 
     protected $rules = [
-        'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png|max:20480',
+        'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,jpg,jpeg,png,pptx,mp4|max:20480',
         'category' => 'required|string|max:50',
     ];
 

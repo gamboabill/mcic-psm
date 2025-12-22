@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Truncate Tables
-        DB::table('projects')->truncate();
+        // DB::table('projects')->truncate();
 
         $this->call(randomProjectSeeder::class);
     }

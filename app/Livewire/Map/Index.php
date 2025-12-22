@@ -62,7 +62,7 @@ class Index extends Component
                 $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhereRaw("DATE_FORMAT(dateStart, '%b %d %Y') LIKE ?", ['%' . $this->search . '%']);
             })
-            ->orderBy('dateStart', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(20);
 
         return view('livewire.map.index', [
